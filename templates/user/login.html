@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block body %}
+
+{% if messages %}
+    {% for message in messages %}
+        <p class="text-danger text-center">{{ message }}</p>
+    {% endfor %}
+{% endif %}
+
+<!-- same background + smaller height like register -->
+<section class="py-4" style="background-color:#eee;">
+
+    <div class="container">
+
+        <div class="row justify-content-center">
+
+            <!-- same centered card width -->
+            <div class="col-md-8 col-lg-6 col-xl-5">
+
+                <div class="card shadow-sm text-black" style="border-radius:25px;">
+                    <div class="card-body p-5">
+
+                        <h2 class="text-center fw-bold mb-4">Login</h2>
+
+                        <form action="{% url 'login' %}" method="POST">
+                            {% csrf_token %}
+
+                            <!-- Email -->
+                            <div class="mb-4">
+                                <input type="email"
+                                       name="email"
+                                       id="email"
+                                       class="form-control"
+                                       required>
+                                <label class="form-label" for="email">Email address</label>
+                            </div>
+
+                            <!-- Password -->
+                            <div class="mb-4">
+                                <input type="password"
+                                       name="password"
+                                       id="password"
+                                       class="form-control"
+                                       required>
+                                <label class="form-label" for="password">Password</label>
+                            </div>
+
+                            <!-- Button -->
+                            <div class="d-grid mb-3">
+                                <button type="submit" class="btn btn-primary btn-lg">
+                                    Sign in
+                                </button>
+                            </div>
+
+                            <!-- Register link -->
+                            <div class="text-center">
+                                <p class="mb-0">
+                                    Not a member?
+                                    <a href="{% url 'registration' %}">Register</a>
+                                </p>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</section>
+
+{% endblock %}
